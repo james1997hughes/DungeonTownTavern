@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     isMoving = false;
    }
+   
+// make it something better
 
    private bool IsWalkable(Vector3 targetPos)
    {
