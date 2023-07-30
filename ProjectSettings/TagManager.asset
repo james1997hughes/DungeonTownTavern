@@ -14,7 +14,7 @@ TagManager:
   - 
   - SolidObjects
   - Roofs
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Roofs
     uniqueID: 3581203533
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 3627110747
     locked: 0

@@ -49,7 +49,23 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("isMoving", isMoving);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+            Interact();
    }
+
+    void Interact()
+    {
+            var facingDir = new Vector3(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
+            var interactPos = transform.position + facingDir;
+
+            Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
+
+            var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
+            if (collider != null)
+
+                Debug.Log("There is an NPC here");
+    }
 
 
     IEnumerator Move(Vector3 targetPos)
@@ -66,11 +82,9 @@ public class PlayerController : MonoBehaviour
     isMoving = false;
    }
    
-// make it something better
-
-   private bool IsWalkable(Vector3 targetPos)
+    private bool IsWalkable(Vector3 targetPos)
    {
-    if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer) != null)
+    if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer | interactableLayer) != null)
     {
         return false;
     }
