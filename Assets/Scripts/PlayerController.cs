@@ -56,15 +56,16 @@ public class PlayerController : MonoBehaviour
 
     void Interact()
     {
-            var facingDir = new Vector3(animator.GetFloat("MoveX"), animator.GetFloat("MoveY"));
+            var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
             var interactPos = transform.position + facingDir;
 
             Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
 
             var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
             if (collider != null)
-
-                Debug.Log("There is an NPC here");
+            {
+                collider.GetComponent<Interactable>()?.Interact();
+            }
     }
 
 
