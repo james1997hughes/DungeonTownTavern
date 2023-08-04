@@ -1,0 +1,28 @@
+This font pack, from Seliel the Shaper, contains 3 true-type fonts for use in low-res retro games:
+
+Mana Seed Title
+An 8x8 pixel (mostly) font with a chonky feel.
+Should be pixel-perfect at 8pt (or multiples of 8), unless your engine/editor is wonky.
+Intended for names, titles and headers.
+Strongly inspired by Seiken Densetsu 3 (Trials of Mana).
+
+Mana Seed Title (monospace)
+A monospace version, where each character occupies exactly 8x8.
+Should be pixel-perfect at 8pt (or multiples of 8), unless your engine/editor is wonky.
+This is what old games used to use, but may seem odd nowadays, since it leaves large gaps between narrow letters like i and l.
+
+Mana Seed Body 
+A 8x4 pixel (mostly) font with a compact, readable feel.
+Should be pixel-perfect at 8pt (or multiples of 8), unless your engine/editor is wonky.
+This one is intended for body text: NPC dialogue, quest details, menu text, etc.
+
+Right now, only Mana Seed Body has accented characters, but if there's demand, I can add them to Mana Seed Title at a later date.
+
+----------------------------------------------
+
+I'm still kind of new to this font business, so if you notice any problems, please let me know so I can fix them.
+You can comment on the product page, or find me on Twitter or Discord:
+
+https://seliel-the-shaper.itch.io/mana-seed-fonts
+https://twitter.com/SelieltheShaper
+https://selieltheshaper.weebly.com/discord.html
