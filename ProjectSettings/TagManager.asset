@@ -44,6 +44,12 @@ TagManager:
   - name: Background
     uniqueID: 3872137069
     locked: 0
+  - name: Background_1
+    uniqueID: 3627110747
+    locked: 0
+  - name: Background_2
+    uniqueID: 1300033625
+    locked: 0
   - name: Foreground
     uniqueID: 31618681
     locked: 0
@@ -53,6 +59,9 @@ TagManager:
   - name: Roofs
     uniqueID: 3581203533
     locked: 0
-  - name: New Layer 5
-    uniqueID: 3627110747
+  - name: Background_3
+    uniqueID: 1265225715
+    locked: 0
+  - name: Background_4
+    uniqueID: 3401851935
     locked: 0
