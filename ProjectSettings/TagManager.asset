@@ -56,12 +56,15 @@ TagManager:
   - name: Player
     uniqueID: 3439106651
     locked: 0
-  - name: Roofs
-    uniqueID: 3581203533
-    locked: 0
   - name: Background_3
     uniqueID: 1265225715
     locked: 0
   - name: Background_4
     uniqueID: 3401851935
+    locked: 0
+  - name: Roofs
+    uniqueID: 3581203533
+    locked: 0
+  - name: Building_1
+    uniqueID: 2917696305
     locked: 0

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InsideTavern.unity
     guid: e129c70de2d35764eb34db27c7d6ac65
+  - enabled: 1
+    path: Assets/Scenes/Dungeon Town.unity
+    guid: 7f27c59857d35ce42a1be82134bb992e
+  - enabled: 1
+    path: Assets/Scenes/DungeonTown_GeneralStore_1.unity
+    guid: 996877a50a8d53645bcc2b8f7dffe27d
   m_configObjects: {}
