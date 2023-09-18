@@ -6,10 +6,14 @@ using UnityEngine;
 public class BattleTurnController : MonoBehaviour
 {
     private BattleController battleController;
-    public int turnNumber = 0;
-    private bool battleInProgress = false;
+    public int turnNumber;
+    public bool battleInProgress = false;
     private BattleActor currentTurn;
     private List<BattleActor> actors;
+    private GameObject UI;
+    private GameObject playerInfoUI;
+    private GameObject playerActionsUI;
+
 
     
     
@@ -17,6 +21,9 @@ public class BattleTurnController : MonoBehaviour
     void Start()
     {
         battleController = gameObject.GetComponent<BattleController>();
+        turnNumber = 0;
+        UI = GameObject.Find("UI");
+
     }
 
     public void startBattle(List<BattleActor> battleActors){
@@ -27,11 +34,25 @@ public class BattleTurnController : MonoBehaviour
         currentTurn = actors.ElementAt(0);
         
         displayPortraits(battleActors);
+        playerInfoUI = GameObject.Find("PlayerInfo");
+        playerActionsUI = GameObject.Find("PlayerActions");
+        StartCoroutine(fadeInCanvasGroup(playerActionsUI.GetComponent<CanvasGroup>()));
+        StartCoroutine(fadeInCanvasGroup(playerInfoUI.GetComponent<CanvasGroup>()));
         playTransitionAnimation();
         enableUI();
     }
 
+    IEnumerator fadeInCanvasGroup(CanvasGroup group){
+        while (group.alpha != 1.0f){
 
+            if (group.alpha > 1.0f){ group.alpha = 1.0f;}
+            if (group.alpha < 1.0f){
+                group.alpha += 0.3f * Time.deltaTime;
+            }
+
+            yield return null;
+        }
+    }
 
     void displayPortraits(List<BattleActor> battleActors){
         //Display turn UI - player + enemy portraits, health, etc.
@@ -55,7 +76,7 @@ public class BattleTurnController : MonoBehaviour
             currentTurn = actors.ElementAt(actors.IndexOf(currentTurn)+1);
         }else{
             turnNumber +=1;
-            Debug.Log("New Turn! Turn: "+turnNumber);
+            Debug.Log(" =============== Turn: "+turnNumber+" ===============");
             currentTurn = actors.ElementAt(0);
         }
 
@@ -63,17 +84,15 @@ public class BattleTurnController : MonoBehaviour
 
 
     // Update is called once per frame
-    int buffer = 0;
+
     void Update()
     {
-        buffer++;
-        if (battleInProgress && buffer>=5){
-            buffer = 0;
+
             //Battle logic
             //Check if it's a player, npc, or environment turn
 
             if (currentTurn.type == ActorType.PLAYER){
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyUp(KeyCode.K))
                 {
                     EndTurn();
                 }
@@ -82,7 +101,6 @@ public class BattleTurnController : MonoBehaviour
             if (currentTurn.type == ActorType.NPC_ENEMY){
                 //CalculateMove();
                 //doMove();
-                Debug.Log(currentTurn.character.charName + " has taken their turn.");
                 EndTurn();
             }
             if (currentTurn.type == ActorType.NPC_NEUTRAL){
@@ -100,6 +118,6 @@ public class BattleTurnController : MonoBehaviour
                 //EndTurn();
             }
 
-        }
+        
     }
 }

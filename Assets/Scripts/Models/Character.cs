@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public CharClass charClass;
     public int hp;
     public int tempHp;
+    public int maxHp;
     public int ac;
     public int initiativeModifier;
     public int actionsPerTurn;
@@ -19,11 +20,12 @@ public class Character : MonoBehaviour
     public ActorType type;
     public ActionSet actions;
 
-    public Character(string name, CharClass charClass, int hp, int tempHp, int ac, Attributes charAttributes, Skills charSkills) {
-        this.charName = name;
+    public Character(string charName, CharClass charClass, int hp, int tempHp, int ac, Attributes charAttributes, Skills charSkills, int maxHp) {
+        this.charName = charName;
         this.charClass = charClass;
         this.hp = hp;
         this.tempHp = hp;
+        this.maxHp = maxHp;
         this.ac = ac;
         this.charAttributes = charAttributes;
         this.charSkills = charSkills;
@@ -33,6 +35,7 @@ public class Character : MonoBehaviour
         this.reactionsPerTurn = 1;
         this.movementSpeed = 10;
     }
-    public Character (string name){}
-
+    public Character (string charName){
+        this.charName = charName;
+    }
 }

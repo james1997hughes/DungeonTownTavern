@@ -10,6 +10,8 @@ public class BattleActor
     public ArrayList statusEffects;
     public Vector2 position;
 
+    public int initiative { get; set;}
+
     public int movementLeft;
     public int actionsLeft;
     public int bonusActionsLeft;
@@ -23,6 +25,7 @@ public class BattleActor
         this.bonusActionsLeft = character.bonusActionsPerTurn;
         this.reactionsLeft = character.reactionsPerTurn;
         this.type = type;
+        this.initiative = 10; //Always assigned at start of combat
     }
 
     public void makeMove(){

@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
     public bool inBattle;
-
     private BattleTurnController turnController;
-    private Dictionary<BattleActor, int> battleActors;
+    private List<BattleActor> battleActors;
     public List<BattleActor> sortedActors;
     private DiceRoller dice;
 
     void Start()
     {
         dice = new DiceRoller();
-        battleActors = new Dictionary<BattleActor, int>();
+        battleActors = new List<BattleActor>();
         inBattle = false;
        
     }
@@ -24,6 +24,7 @@ public class BattleController : MonoBehaviour
         List<GameObject> actors = new List<GameObject>();
         actors.Add(GameObject.Find("Enemy1"));
         actors.Add(GameObject.Find("Enemy2"));
+        actors.Add(GameObject.Find("Player"));
         setupBattle(actors);
         startBattle();
     }
@@ -31,14 +32,13 @@ public class BattleController : MonoBehaviour
     public void setupBattle(List<GameObject> actors)
     {
         List<Character> charactersInScene = findActorsInScene(actors);
-
-
         foreach (Character character in charactersInScene){
             BattleActor bActor = generateBattleActorFromCharacter(character);
-            battleActors.Add(bActor, rollInitiative(bActor));
+            int initiative = rollInitiative(bActor);
+            bActor.initiative = initiative;
+            battleActors.Add(bActor);
         }
         sortedActors = sortInitiativeOrder(battleActors);
-
     }
 
     public void startBattle(){
@@ -47,8 +47,11 @@ public class BattleController : MonoBehaviour
         turnController.startBattle(sortedActors);
     }
 
-    private List<BattleActor> sortInitiativeOrder(Dictionary<BattleActor, int> dict){
-        List<BattleActor> sortedActors = new List<BattleActor>();
+    private List<BattleActor> sortInitiativeOrder(List<BattleActor> actors){
+        return actors.OrderByDescending(actor => actor.initiative).ToList();
+    }
+    /*
+       List<BattleActor> sortedActors = new List<BattleActor>();
         List<BattleActor> temp;
         while(dict.Count != sortedActors.Count){
             temp = new List<BattleActor>();
@@ -70,10 +73,11 @@ public class BattleController : MonoBehaviour
             }
             foreach (BattleActor z in temp){
                 sortedActors.Add(z);
+                dict.Remove(z);
             }
         }
         return sortedActors;
-    }
+    */
 
     //Gets character object attached to each provided GameObject
     private List<Character> findActorsInScene(List<GameObject> actors)

@@ -2,9 +2,11 @@ public class Shadowheart : Character
 {
    public Shadowheart() : base("Shadowheart"){
 
+        this.charName = "Shadowheart";
         this.charClass = CharClass.Wizard;
         this.hp = 30;
         this.tempHp = 0;
+        this.maxHp = 60;
         this.ac = 13;
 
         //Attributes

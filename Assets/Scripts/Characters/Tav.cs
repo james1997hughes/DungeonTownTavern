@@ -5,6 +5,7 @@ public class Tav : Character
         this.charClass = CharClass.Wizard;
         this.hp = 99;
         this.tempHp = 0;
+        this.maxHp = 99;
         this.ac = 20;
 
         //Attributes
