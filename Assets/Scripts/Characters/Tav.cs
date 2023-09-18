@@ -1,21 +1,21 @@
-public class Shadowheart : Character
+public class Tav : Character
 {
-   public Shadowheart() : base("Shadowheart"){
+   public Tav() : base("Tav"){
 
         this.charClass = CharClass.Wizard;
-        this.hp = 30;
+        this.hp = 99;
         this.tempHp = 0;
-        this.ac = 13;
+        this.ac = 20;
 
         //Attributes
-        Attributes shadowHeartAttributes = new Attributes();
-        shadowHeartAttributes.Charisma.value = 20;
-        this.charAttributes = shadowHeartAttributes;
+        Attributes tavAttributes = new Attributes();
+        tavAttributes.Charisma.value = 20;
+        this.charAttributes = tavAttributes;
 
         //Skills
-        Skills shadowHeartSkills = new Skills();
-        shadowHeartSkills.AnimalHandling.isProficient = true;
-        this.charSkills = shadowHeartSkills;
+        Skills tavSkills = new Skills();
+        tavSkills.AnimalHandling.isProficient = true;
+        this.charSkills = tavSkills;
 
 
         this.initiativeModifier = charAttributes.Dexterity.modifier; // + mods from feats, class bonuses, etc..

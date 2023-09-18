@@ -7,8 +7,6 @@ public class BattleTurnController : MonoBehaviour
 {
     private BattleController battleController;
     public int turnNumber = 0;
-    private bool waitingForInput = false;
-    private bool turnInProgress = false;
     private bool battleInProgress = false;
     private BattleActor currentTurn;
     private List<BattleActor> actors;
@@ -70,13 +68,8 @@ public class BattleTurnController : MonoBehaviour
             //Battle logic
             //Check if it's a player, npc, or environment turn
 
-            if (currentTurn.type == ActorType.PLAYER && waitingForInput){
-                return; //If it's a player turn, and no moves have been made: do nothing
-            }
-            if (currentTurn.type == ActorType.PLAYER && !waitingForInput){
-                //Handle player actions as an event - don't 'queue' them then handle here.
-                //All that should be here is the following:
-                //EndTurn();
+            if (currentTurn.type == ActorType.PLAYER){
+                return; //If it's a player turn, do nothing. Players will move, attack, and end turn indepentently.
             }
             if (currentTurn.type == ActorType.NPC_ENEMY){
                 //CalculateMove();

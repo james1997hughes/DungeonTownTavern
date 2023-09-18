@@ -4,28 +4,15 @@ using UnityEngine;
 
 public class CharacterAction
 {
-    //Either just a container class... Or define all action logic here.
-    //Perhaps create constructors that accept an action ENUM
-    //and have an actionHandler method defined.
-    //so e.g.
-    /*
-
-    private void Action_MOVE(BattleActor mover, Vector2 destination){
-        Some movement logic
+    //This is a parent class for all character actions.
+    //Store here stuff common to all actions, such as a sprite, name, type
+    //Single actions, such as Attack, Move, Shove will inherit this class
+    CharacterActions charAction;
+    public Sprite actionSprite;
+    public string actionName;
+    public ActionType actionType;
+    public CharacterAction(CharacterActions charAction){
+        this.charAction = charAction;
     }
 
-    var methodHolder;
-    public Action(ActionValue action){
-        switch(action){
-            case ActionValue.MOVE:
-                methodHolder = Action_Move;
-            
-        }
-    }
-    void doAction(){
-        methodHolder();
-    }
-
-
-    */
 }

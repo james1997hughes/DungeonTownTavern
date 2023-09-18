@@ -13,7 +13,6 @@ public class BattleController : MonoBehaviour
 
     void Start()
     {
-        turnController = gameObject.GetComponent<BattleTurnController>();
         dice = new DiceRoller();
         inBattle = false;
        
@@ -39,6 +38,7 @@ public class BattleController : MonoBehaviour
 
     public void startBattle(){
         inBattle = true;
+        turnController = gameObject.AddComponent<BattleTurnController>();
         turnController.startBattle(sortedActors);
     }
 
@@ -92,6 +92,11 @@ public class BattleController : MonoBehaviour
 
     void exitBattle()
     {
+        inBattle = false;
+        Destroy(turnController);
+        battleActors = null;
+        sortedActors = null;
+
     }
 
     void Update()
