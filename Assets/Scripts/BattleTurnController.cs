@@ -20,6 +20,7 @@ public class BattleTurnController : MonoBehaviour
     }
 
     public void startBattle(List<BattleActor> battleActors){
+        Debug.Log("TurnController has started Battle");
         actors = battleActors;
         turnNumber = 1;
         battleInProgress = true;
@@ -49,9 +50,12 @@ public class BattleTurnController : MonoBehaviour
         //Highlight subject portrait in ui
     }
     void EndTurn(){
+        Debug.Log("Ending turn " + turnNumber + " of " + currentTurn.character.charName);
         if (actors.IndexOf(currentTurn) != actors.Count-1){
             currentTurn = actors.ElementAt(actors.IndexOf(currentTurn)+1);
         }else{
+            turnNumber +=1;
+            Debug.Log("New Turn! Turn: "+turnNumber);
             currentTurn = actors.ElementAt(0);
         }
 
@@ -69,12 +73,17 @@ public class BattleTurnController : MonoBehaviour
             //Check if it's a player, npc, or environment turn
 
             if (currentTurn.type == ActorType.PLAYER){
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    EndTurn();
+                }
                 return; //If it's a player turn, do nothing. Players will move, attack, and end turn indepentently.
             }
             if (currentTurn.type == ActorType.NPC_ENEMY){
                 //CalculateMove();
                 //doMove();
-                //EndTurn();
+                Debug.Log(currentTurn.character.charName + " has taken their turn.");
+                EndTurn();
             }
             if (currentTurn.type == ActorType.NPC_NEUTRAL){
                 //CalculateMove();

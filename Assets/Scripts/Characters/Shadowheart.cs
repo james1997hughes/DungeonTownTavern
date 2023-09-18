@@ -26,7 +26,7 @@ public class Shadowheart : Character
         this.reactionsPerTurn = 1;
         this.movementSpeed = 10;
 
-        this.actions = new Actions(commonActions: true);
+        this.actions = new ActionSet(commonActions: true);
 
         this.type = ActorType.PLAYER;
    }

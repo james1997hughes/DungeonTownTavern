@@ -14,13 +14,18 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         dice = new DiceRoller();
+        battleActors = new Dictionary<BattleActor, int>();
         inBattle = false;
        
     }
 
-    void generateTestBattle(){
-        //creater arraylist of test actors
-        //start battle (testActors)
+    void testBattle(){
+        Debug.Log("TEST BATTLE START");
+        List<GameObject> actors = new List<GameObject>();
+        actors.Add(GameObject.Find("Enemy1"));
+        actors.Add(GameObject.Find("Enemy2"));
+        setupBattle(actors);
+        startBattle();
     }
 
     public void setupBattle(List<GameObject> actors)
@@ -46,19 +51,20 @@ public class BattleController : MonoBehaviour
         List<BattleActor> sortedActors = new List<BattleActor>();
         List<BattleActor> temp;
         while(dict.Count != sortedActors.Count){
-            temp = null;
+            temp = new List<BattleActor>();
             foreach (BattleActor x in dict.Keys){
-                if (temp == null){
+                if (temp.Count == 0){
                     temp.Add(x);
                     continue;
                 }
                 foreach (BattleActor y in temp){
+                    if (dict[y] == dict[x]){
+                        temp.Add(x);
+                    }
                     if (dict[y] > dict[x]){
                         temp.Clear();
                         temp.Add(x);
-                    }
-                    if (dict[y] == dict[x]){
-                        temp.Add(x);
+                        break;
                     }
                 }
             }
@@ -74,9 +80,7 @@ public class BattleController : MonoBehaviour
     {
         List<Character> chars = new List<Character>();
         foreach (GameObject x in actors){
-            try{
-                chars.Add(x.GetComponent<Character>());
-            } catch {}
+            chars.Add(x.GetComponent<Character>());
             
         }
         return chars;
@@ -103,6 +107,7 @@ public class BattleController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) && !inBattle)
         {
+            testBattle();
         }
     }
 }

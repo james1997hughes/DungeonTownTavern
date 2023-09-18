@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public Attributes charAttributes;
     public Skills charSkills;
     public ActorType type;
-    public Actions actions;
+    public ActionSet actions;
 
     public Character(string name, CharClass charClass, int hp, int tempHp, int ac, Attributes charAttributes, Skills charSkills) {
         this.charName = name;
