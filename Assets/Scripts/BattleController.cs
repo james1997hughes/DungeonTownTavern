@@ -62,36 +62,7 @@ public class BattleController : MonoBehaviour
     private List<BattleActor> sortInitiativeOrder(List<BattleActor> actors){
         return actors.OrderByDescending(actor => actor.initiative).ToList();
     }
-    /*
-       List<BattleActor> sortedActors = new List<BattleActor>();
-        List<BattleActor> temp;
-        while(dict.Count != sortedActors.Count){
-            temp = new List<BattleActor>();
-            foreach (BattleActor x in dict.Keys){
-                if (temp.Count == 0){
-                    temp.Add(x);
-                    continue;
-                }
-                foreach (BattleActor y in temp){
-                    if (dict[y] == dict[x]){
-                        temp.Add(x);
-                    }
-                    if (dict[y] > dict[x]){
-                        temp.Clear();
-                        temp.Add(x);
-                        break;
-                    }
-                }
-            }
-            foreach (BattleActor z in temp){
-                sortedActors.Add(z);
-                dict.Remove(z);
-            }
-        }
-        return sortedActors;
-    */
 
-    //Gets character object attached to each provided GameObject
     private List<Character> findActorsInScene(List<GameObject> actors)
     {
         List<Character> chars = new List<Character>();

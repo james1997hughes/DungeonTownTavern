@@ -52,6 +52,7 @@ public class BattleTurnController : MonoBehaviour
 
         highlightPlayer(currentTurn);
 
+        updateAllStats();
         battlePaused = false;
         Debug.Log("=============== Turn: "+turnNumber+" ===============");
 
@@ -88,6 +89,11 @@ public class BattleTurnController : MonoBehaviour
     void enableUI(){
         //battleUI.visible = true;
     }
+    void updateAllStats(){
+        battlePaused = true; // This doesn't pause because it launches coroutines
+        playerInfo.updateStats();
+        enemyInfo.updateStats();
+    }
     void playTransitionAnimation(){
 
     }
@@ -107,6 +113,8 @@ public class BattleTurnController : MonoBehaviour
         playerInfo.fadeAllPortraits();
         enemyInfo.fadeAllPortraits();
         //allyInfo.fadeAllAllies();
+
+        updateAllStats();
 
 
         if (actors.IndexOf(currentTurn) != actors.Count-1){

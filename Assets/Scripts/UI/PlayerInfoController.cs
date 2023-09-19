@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfoController : MonoBehaviour
 {
@@ -49,5 +50,29 @@ public class PlayerInfoController : MonoBehaviour
         playerCount++;
 
         playerInfoContainers.Add(infoBox);
+    }
+
+    public void updateStats(){
+        foreach(GameObject go in playerInfoContainers){
+            PlayerInfoContainer pic = go.GetComponent<PlayerInfoContainer>();
+            float hpPerc = ((float)pic.ba.character.hp / (float)pic.ba.character.maxHp)*100;
+            GameObject manaSlide = go.transform.Find("ManaSlider").gameObject;
+            Slider manaSlider = manaSlide.GetComponent<Slider>();
+            Slider hpSlider = go.transform.Find("HPSlider").gameObject.GetComponent<Slider>();
+
+            if (hpSlider.value != hpPerc){
+                StartCoroutine(adjustStat(hpPerc, hpSlider));
+            }
+        }
+    }
+
+    IEnumerator adjustStat(float newValue, Slider slider){
+        float originalValue = slider.value;
+        while(slider.value > newValue+2 || slider.value < newValue-2){
+            float i = (newValue - originalValue)/5 * Time.deltaTime; // Sub slider.value in for originalValue here for 'slows down as it gets close' effect
+            slider.value += i;
+            yield return null;
+        }
+        slider.value = newValue;
     }
 }
