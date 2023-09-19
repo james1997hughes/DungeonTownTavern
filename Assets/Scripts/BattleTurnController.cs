@@ -7,6 +7,7 @@ public class BattleTurnController : MonoBehaviour
 {
     private BattleController battleController;
     PlayerInfoController playerInfo;
+    EnemyInfoController enemyInfo;
     
     public int turnNumber;
     public bool aiThinking = false;
@@ -16,6 +17,8 @@ public class BattleTurnController : MonoBehaviour
     private List<BattleActor> actors;
     private GameObject UI;
     private GameObject playerInfoUI;
+
+    private GameObject enemyInfoUI;
     private GameObject playerActionsUI;
 
     public bool isInitialized {get; set;}
@@ -39,6 +42,7 @@ public class BattleTurnController : MonoBehaviour
         currentTurn = actors.ElementAt(0);
 
         playerInfoUI = GameObject.Find("PlayerInfo");
+        enemyInfoUI = GameObject.Find("EnemyInfo");
         playerActionsUI = GameObject.Find("PlayerActions");
         UI = GameObject.Find("UI");
         
@@ -69,10 +73,14 @@ public class BattleTurnController : MonoBehaviour
 
     void displayPortraits(List<BattleActor> battleActors){
         playerInfo = playerInfoUI.GetComponent<PlayerInfoController>();
+        enemyInfo = enemyInfoUI.GetComponent<EnemyInfoController>();
         GameObject playerInfoContainerPrefab = Resources.Load<GameObject>("Prefabs/PlayerInfoContainerPrefab");
+        GameObject enemyInfoContainerPrefab = Resources.Load<GameObject>("Prefabs/EnemyInfoContainerPrefab");
         foreach (BattleActor ba in battleActors){
             if (ba.character.type == ActorType.PLAYER){
                 playerInfo.addPlayerInfoContainer(ba, playerInfoContainerPrefab);
+            } else {
+                enemyInfo.addEnemyInfoContainer(ba, enemyInfoContainerPrefab);
             }
             
         }
@@ -92,8 +100,15 @@ public class BattleTurnController : MonoBehaviour
     }
     void EndTurn(){
         Debug.Log("Ending turn " + turnNumber + " of " + currentTurn.character.charName);
+
         aiThinking = false;
         battlePaused = true;
+
+        playerInfo.fadeAllPortraits();
+        enemyInfo.fadeAllPortraits();
+        //allyInfo.fadeAllAllies();
+
+
         if (actors.IndexOf(currentTurn) != actors.Count-1){
             currentTurn = actors.ElementAt(actors.IndexOf(currentTurn)+1);
         }else{
@@ -101,10 +116,6 @@ public class BattleTurnController : MonoBehaviour
             Debug.Log(" =============== Turn: "+turnNumber+" ===============");
             currentTurn = actors.ElementAt(0);
         }
-
-        playerInfo.fadeAllPortraits();
-        //enemyInfo.fadeAllPortraits();
-        //allyInfo.fadeAllAllies();
 
         highlightPlayer(currentTurn);
         battlePaused = false;
@@ -114,7 +125,7 @@ public class BattleTurnController : MonoBehaviour
         if (currentTurn.type == ActorType.PLAYER){
             playerInfo.highlightPlayer(currentTurn);
         } else if (currentTurn.type == ActorType.NPC_ENEMY){
-            //enemyInfo.highlightEnemy(currentTurn);
+            enemyInfo.highlightEnemy(currentTurn);
         } else if (currentTurn.type == ActorType.NPC_FRIENDLY){
             //allyInfo.highlightAlly(currentTurn);
         }

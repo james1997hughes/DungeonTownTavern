@@ -7,6 +7,7 @@ public class BattleActor
     public Character character;
     public bool playerControlled;
     public GameObject playerInfoContainer;
+    public GameObject enemyInfoContainer;
     public ActorType type;
     public ArrayList statusEffects;
     public Vector2 position;

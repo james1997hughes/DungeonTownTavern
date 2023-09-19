@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// A Battle class must be on the same GameObject as this
+// Or the battle won't load.
 public class BattleController : MonoBehaviour
 {
     public bool inBattle;
@@ -19,12 +22,21 @@ public class BattleController : MonoBehaviour
        
     }
 
-    void testBattle(){
-        Debug.Log("TEST BATTLE START");
+    void loadBattle(){
+        Debug.Log("Loading battle from GameObject...");
+        ArrayList actorNames = new ArrayList();
+        try{
+            actorNames = gameObject.GetComponent<Battle>().actorNames;
+        } catch (NullReferenceException e) {
+            Debug.Log("No battle associated with BattleController GameObject!");
+            return;
+        }
         List<GameObject> actors = new List<GameObject>();
-        actors.Add(GameObject.Find("Enemy1"));
-        actors.Add(GameObject.Find("Player2"));
-        actors.Add(GameObject.Find("Player"));
+
+        foreach(string x in actorNames){
+            actors.Add(GameObject.Find(x));
+        }
+
         setupBattle(actors);
         startBattle();
     }
@@ -111,7 +123,7 @@ public class BattleController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) && !inBattle)
         {
-            testBattle();
+            loadBattle();
         }
     }
 }
