@@ -20,6 +20,8 @@ public class Character : MonoBehaviour
     public ActorType type;
     public ActionSet actions;
 
+    public Sprite portrait;
+
     public Character(string charName, CharClass charClass, int hp, int tempHp, int ac, Attributes charAttributes, Skills charSkills, int maxHp) {
         this.charName = charName;
         this.charClass = charClass;

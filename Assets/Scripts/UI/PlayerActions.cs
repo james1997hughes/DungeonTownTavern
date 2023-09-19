@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     // Start is called before the first frame update
-    PlayerInfo playerInfo;
+    PlayerInfoController playerInfo;
 
     void Start()
     {
-        playerInfo = gameObject.GetComponent<PlayerInfo>();
+        //playerInfo = gameObject.GetComponent<PlayerInfoController>();
     }
 
     // Update is called once per frame

@@ -276,7 +276,8 @@ GameObject:
   - component: {fileID: 7845940794423555531}
   - component: {fileID: 7845940794423555529}
   - component: {fileID: 7845940794423555528}
-  - component: {fileID: 7845940794423555526}
+  - component: {fileID: 1182012626087129167}
+  - component: {fileID: 5850107442997628382}
   m_Layer: 0
   m_Name: PlayerInfoContainerPrefab
   m_TagString: Untagged
@@ -345,7 +346,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7845940794423555526
+--- !u!114 &1182012626087129167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,10 +355,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7845940794423555530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a2ded642e1cef47bac25315d1a13fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 120e7b500e38c7e43b2f7ee7ddee5457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  characterSprite: {fileID: 0}
+--- !u!225 &5850107442997628382
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845940794423555530}
+  m_Enabled: 1
+  m_Alpha: 0.31
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7845940794544520811
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class BattleController : MonoBehaviour
         Debug.Log("TEST BATTLE START");
         List<GameObject> actors = new List<GameObject>();
         actors.Add(GameObject.Find("Enemy1"));
-        actors.Add(GameObject.Find("Enemy2"));
+        actors.Add(GameObject.Find("Player2"));
         actors.Add(GameObject.Find("Player"));
         setupBattle(actors);
         startBattle();
