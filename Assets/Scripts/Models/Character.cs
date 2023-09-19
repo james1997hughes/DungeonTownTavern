@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     public string charName;
     public CharClass charClass;
@@ -40,4 +40,5 @@ public class Character : MonoBehaviour
     public Character (string charName){
         this.charName = charName;
     }
+    public abstract void takeTurn(BattleActor actor, BattleTurnController turnController);
 }

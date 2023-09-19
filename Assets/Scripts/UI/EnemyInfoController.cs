@@ -51,7 +51,7 @@ public class EnemyInfoController : MonoBehaviour
         enemyInfoContainers.Add(infoBox);
     }
 
-    public void updateStats(){
+    public void updateStats(bool instantly = false){
         foreach(GameObject go in enemyInfoContainers){
             EnemyInfoContainer pic = go.GetComponent<EnemyInfoContainer>();
             float hpPerc = ((float)pic.ba.character.hp / (float)pic.ba.character.maxHp)*100;
@@ -59,8 +59,10 @@ public class EnemyInfoController : MonoBehaviour
             Slider manaSlider = manaSlide.GetComponent<Slider>();
             Slider hpSlider = go.transform.Find("HPSlider").gameObject.GetComponent<Slider>();
 
-            if (hpSlider.value != hpPerc){
+            if (hpSlider.value != hpPerc && !instantly){
                 StartCoroutine(adjustStat(hpPerc, hpSlider));
+            } else if(hpSlider.value != hpPerc && instantly){
+                hpSlider.value = hpPerc;
             }
         }
     }

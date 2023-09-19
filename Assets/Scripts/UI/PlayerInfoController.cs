@@ -4,6 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This & EnemyInfoController should be merged to parent class InfoController
+//Then EnemyInfoContrl and this should inherit it
+//to reduce the repetition of code
 public class PlayerInfoController : MonoBehaviour
 {
     BattleController battleController;
@@ -52,7 +55,7 @@ public class PlayerInfoController : MonoBehaviour
         playerInfoContainers.Add(infoBox);
     }
 
-    public void updateStats(){
+    public void updateStats(bool instantly = false){
         foreach(GameObject go in playerInfoContainers){
             PlayerInfoContainer pic = go.GetComponent<PlayerInfoContainer>();
             float hpPerc = ((float)pic.ba.character.hp / (float)pic.ba.character.maxHp)*100;
@@ -60,8 +63,10 @@ public class PlayerInfoController : MonoBehaviour
             Slider manaSlider = manaSlide.GetComponent<Slider>();
             Slider hpSlider = go.transform.Find("HPSlider").gameObject.GetComponent<Slider>();
 
-            if (hpSlider.value != hpPerc){
+            if (hpSlider.value != hpPerc && !instantly){
                 StartCoroutine(adjustStat(hpPerc, hpSlider));
+            } else if(hpSlider.value != hpPerc && instantly){
+                hpSlider.value = hpPerc;
             }
         }
     }

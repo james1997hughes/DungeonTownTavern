@@ -30,10 +30,8 @@ public class BattleActor
         this.initiative = 10; //Always assigned at start of combat
     }
 
-    public void makeMove(){
-        //Make move, deduct movement speed
+    public void takeTurn(BattleTurnController turnController){
+        character.takeTurn(this, turnController);
     }
-    public void doAction(){
-        //Do action, deduct appropriate action
-    }
+
 }

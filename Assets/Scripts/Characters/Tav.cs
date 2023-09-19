@@ -32,4 +32,8 @@ public class Tav : Character
         this.type = ActorType.PLAYER;
    }
 
+   public override void takeTurn(BattleActor actor, BattleTurnController turnController){
+      //Tav AI
+   }
+
 }

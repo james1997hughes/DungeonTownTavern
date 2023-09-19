@@ -32,4 +32,7 @@ public class BasicEnemy : Character
         this.type = ActorType.NPC_ENEMY;
    }
 
+   public override void takeTurn(BattleActor actor, BattleTurnController turnController){
+      //BasicEnemy AI
+   }
 }

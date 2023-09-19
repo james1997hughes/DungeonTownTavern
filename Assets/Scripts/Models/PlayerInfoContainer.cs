@@ -17,12 +17,4 @@ public class PlayerInfoContainer : MonoBehaviour
         this.characterSprite = sprite;
         gameObject.transform.Find("Portrait").GetComponent<Image>().sprite = sprite;
     }
-    void UpdateHpBar(float value)
-    {
-        
-    }
-
-    void UpdateManaBar(float value){
-        
-    }
 }

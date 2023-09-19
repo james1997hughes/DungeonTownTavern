@@ -33,4 +33,8 @@ public class Shadowheart : Character
         this.type = ActorType.PLAYER;
    }
 
+   public override void takeTurn(BattleActor actor, BattleTurnController turnController){
+      //Shadowheart AI
+   }
+
 }
